@@ -19,11 +19,11 @@
     border-bottom: 1px solid #E2E8F0; }
   nav a { padding: 6px 14px; border-radius: 20px; background: #fff;
     color: #059669; font-weight: 700; font-size: 13px; text-decoration: none;
-    border: 1px solid #E2E8F0; }
-  nav a:hover { background: #E6F4EA; }
+    border: 1px solid #E2E8F0; cursor: pointer; transition: all 0.2s; }
+  nav a:hover, nav a.active { background: #E6F4EA; border-color: #10B981; }
   main { padding: 28px 32px 40px; }
-  section { padding: 22px 0; border-bottom: 1px solid #F1F5F9; }
-  section:last-child { border-bottom: none; }
+  section { padding: 22px 0; display: none; } /* إخفاء الأقسام افتراضياً والتحكم بها عبر الـ JS */
+  section.active { display: block; } /* إظهار اللغة النشطة فقط */
   h2 { color: #059669; font-size: 20px; font-weight: 900; margin-bottom: 10px; }
   h3 { color: #334155; font-size: 16px; font-weight: 800; margin-top: 14px; margin-bottom: 6px; }
   p, li { font-size: 14.5px; margin-bottom: 8px; }
@@ -40,7 +40,6 @@
   footer { background: #1E293B; color: #CBD5E1; padding: 16px 28px;
     font-size: 12px; text-align: center; }
   footer b { color: #fff; }
-  hr.lang { border: 0; border-top: 3px dashed #E2E8F0; margin: 30px 0; }
 </style>
 </head>
 <body>
@@ -59,16 +58,16 @@
     </div>
   </header>
 
-  <nav>
-    <a href="#fr">🇫🇷 Français</a>
-    <a href="#en">🇬🇧 English</a>
-    <a href="#es">🇪🇸 Español</a>
-    <a href="#ar">🇲🇦 العربية</a>
+  <nav id="lang-nav">
+    <a data-lang="fr" class="active">🇫🇷 Français</a>
+    <a data-lang="en">🇬🇧 English</a>
+    <a data-lang="es">🇪🇸 Español</a>
+    <a data-lang="ar">🇲🇦 العربية</a>
   </nav>
 
   <main>
 
-  <section id="fr">
+  <section id="fr" class="active">
     <h2>🇫🇷 Politique de confidentialité (Français)</h2>
 
     <h3>1. Présentation</h3>
@@ -86,7 +85,7 @@
     <p>GermoKids s'appuie sur les services tiers sécurisés suivants :</p>
     <ul>
       <li><b>Google AdMob</b> (publicités) : GermoKids diffuse des publicités fournies par Google AdMob, configurées rigoureusement en mode <b>« child-directed »</b> (annonces <b>non personnalisées</b>, contenu maximal G — adapté à un jeune public et conforme aux règles Google Play Families). AdMob peut traiter un identifiant publicitaire réinitialisable conformément à ces règles.
-      → <a href="https://policies.google.com/privacy">Politique de confidentialité de Google</a></li>
+      → <a href="https://policies.google.com/privacy" target="_blank">Politique de confidentialité de Google</a></li>
 
       <li><b>Google Play Billing</b> (achats in-app) : utilisé pour traiter les abonnements ou achats premium pour débloquer du contenu supplémentaire. Toutes les transactions et données de paiement sont gérées de manière sécurisée directement par Google Play, et ne sont jamais transmises à GermoKids.</li>
 
@@ -114,8 +113,6 @@
     <p>Cette politique peut évoluer pour rester conforme aux réglementations. Toute modification importante sera signalée aux utilisateurs directement dans l'application et mise à jour sur cette page.</p>
   </section>
 
-  <hr class="lang">
-
   <section id="en">
     <h2>🇬🇧 Privacy Policy (English)</h2>
 
@@ -134,7 +131,7 @@
     <p>GermoKids relies on the following secure third-party services:</p>
     <ul>
       <li><b>Google AdMob</b> (ads): configured strictly in <b>child-directed mode</b> (<b>non-personalized ads</b>, G-rated content — compliant with Google Play Families policy). AdMob may process a resettable advertising identifier in compliance with these rules.
-      → <a href="https://policies.google.com/privacy">Google's Privacy Policy</a></li>
+      → <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a></li>
       <li><b>Google Play Billing</b> (in-app purchases): handles premium subscriptions or purchases to unlock extra content. All payment transaction data stays securely with Google Play.</li>
       <li><b>flutter_local_notifications</b>: optional daily on-device reminder (runs locally without any server), only if activated in settings.</li>
       <li><b>System Text-to-Speech & Voice Processing</b>: pronounces German words via the built-in device voice and uses local voice processing to help children practice pronunciation safely.</li>
@@ -159,8 +156,6 @@
     <p>This policy may be updated to reflect compliance changes. Significant updates will be flagged inside the app and updated on this page.</p>
   </section>
 
-  <hr class="lang">
-
   <section id="es">
     <h2>🇪🇸 Política de privacidad (Español)</h2>
 
@@ -179,7 +174,7 @@
     <p>GermoKids se apoya en los siguientes servicios seguros de terceros:</p>
     <ul>
       <li><b>Google AdMob</b> (anuncios): configurado estrictamente en modo <b>infantil / child-directed</b> (anuncios <b>no personalizados</b>, contenido apto para todo público con clasificación G — conforme a las políticas de Google Play Families). AdMob puede procesar un identificador publicitario restablecible de acuerdo con estas reglas.
-      → <a href="https://policies.google.com/privacy">Política de privacidad de Google</a></li>
+      → <a href="https://policies.google.com/privacy" target="_blank">Política de privacidad de Google</a></li>
       <li><b>Google Play Billing</b> (compras integradas): gestiona las suscripciones o compras premium para desbloquear contenido adicional. Todos los datos de pago quedan procesados de forma segura directamente por Google Play.</li>
       <li><b>flutter_local_notifications</b>: recordatorio diario local opcional en el dispositivo (funciona localmente sin servidor), solo si se activa en los ajustes.</li>
       <li><b>Síntesis de voz y procesamiento de voz del sistema</b>: pronuncia las palabras en alemán mediante la voz integrada del sistema y utiliza el procesamiento de voz local para ayudar al niño a practicar la pronunciación de forma 100% segura.</li>
@@ -197,14 +192,12 @@
     <h3>5. Tus derechos</h3>
     <ul>
       <li><b>Eliminación de datos</b>: el botón «Restablecer el progreso» en los Ajustes borra instantáneamente todos los datos locales guardados. Desinstalar la aplicación también elimina todo por completo del dispositivo.</li>
-      <li><b>Contact</b>: para cualquier duda sobre esta política, puede escribirnos a: <a href="mailto:vs.media.ste@gmail.com">vs.media.ste@gmail.com</a>.</li>
+      <li><b>Contacto</b>: para cualquier duda sobre esta política, puede escribirnos a: <a href="mailto:vs.media.ste@gmail.com">vs.media.ste@gmail.com</a>.</li>
     </ul>
 
     <h3>6. Cambios</h3>
     <p>Esta política puede actualizarse para cumplir con los cambios legales. Los cambios importantes se notificarán a los usuarios directamente dentro de la aplicación y se actualizarán en esta página.</p>
   </section>
-
-  <hr class="lang">
 
   <section id="ar" class="rtl">
     <h2>🇲🇦 سياسة الخصوصية (العربية)</h2>
@@ -224,7 +217,7 @@
     <p>يعتمد GermoKids على الخدمات الخارجية الآمنة التالية:</p>
     <ul>
       <li><b>Google AdMob</b> (إعلانات): يعرض التطبيق إعلانات شبكة قوقل، وهي مُهيَّأة بدقة في وضع <b>«موجَّه للأطفال»</b> (إعلانات <b>غير مخصّصة</b> ومحتوى عائلي نقي بتصنيف G متوافق تماماً مع سياسات عائلات Google Play). قد تعالج الشبكة معرفاً إعلانياً قابلاً لإعادة التعيين وفق هذه القواعد.
-      → <a href="https://policies.google.com/privacy">سياسة خصوصية Google</a></li>
+      → <a href="https://policies.google.com/privacy" target="_blank">سياسة خصوصية Google</a></li>
       <li><b>Google Play Billing</b> (الشراء داخل التطبيق): لمعالجة عمليات الشراء أو الاشتراكات لفتح المحتوى المتقدم. جميع بيانات الدفع والمعاملات تتم إدارتها بأمان عبر متجر Google Play مباشرة ولا تصل إلى تطبيقنا أبداً.</li>
       <li><b>flutter_local_notifications</b>: لإرسال تذكير يومي محلي على الجهاز للتشجيع على المذاكرة (يعمل محلياً بدون خوادم)، ويظهر فقط إذا تم تفعيله من الإعدادات.</li>
       <li><b>النطق الصوتي والتعرف على الصوت للنظام</b>: نستخدم ميزة تحويل النص إلى كلام المدمجة بنظام الجهاز لنطق الكلمات الألمانية، وميزة معالجة الصوت المحلية لمساعدة الطفل على تصحيح النطق بأمان تام.</li>
@@ -257,5 +250,21 @@
   </footer>
 
 </div>
+
+<script>
+  // نظام التبديل الفوري والذكي بين اللغات
+  document.querySelectorAll('#lang-nav a').forEach(button => {
+    button.addEventListener('click', () => {
+      // إزالة تنشيط جميع الأزرار واللغات الأخرى
+      document.querySelectorAll('#lang-nav a').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+      
+      // تفعيل زر اللغة التي تم الضغط عليها وإظهار قسمها فقط
+      button.classList.add('active');
+      const lang = button.getAttribute('data-lang');
+      document.getElementById(lang).classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>
